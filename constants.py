@@ -1,5 +1,9 @@
 import string
-CHARACTERS_LIST = list(string.ascii_letters)
-DIGITS_LIST = list(string.digits)
-PUNCTUATION_LIST = list(string.punctuation)
-ALL = CHARACTERS_LIST + DIGITS_LIST + PUNCTUATION_LIST
+CHARACTERS_TYPES = {
+    "characters": list(string.ascii_letters),
+    "digits": list(string.digits),
+    "punctuations":  list(string.punctuation),
+}
+
+CHARACTERS_TYPES["all"] = CHARACTERS_TYPES.get("characters") + CHARACTERS_TYPES.get("digits") + \
+                          CHARACTERS_TYPES.get("punctuations")
