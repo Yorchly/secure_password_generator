@@ -16,4 +16,7 @@ python3 secure_password.py <length>
 # Example
 ![Secure Password Gif](./secure_password_re_sizing.gif)
 
+# Documentation
+[https://yorchly.github.io/secure-password-doc/](https://yorchly.github.io/secure-password-doc/)
+
 

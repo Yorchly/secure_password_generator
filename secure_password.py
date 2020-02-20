@@ -7,7 +7,10 @@ def build_prev_password():
     """
     Build a previous password with: one character, one digit and one punctuation. This method is used to ensure
     that final password have at least one of the element mentioned above.
-    :return: type = list.
+
+    :return: (list) -- return three elements chosen pseudo-randomly from CHARACTERS_TYPES["characters"], \
+    CHARACTERS_TYPES["digits"], CHARACTERS_TYPES["punctuations"]
+
     """
     password_choices = ["characters", "digits", "punctuations"]
 
@@ -16,13 +19,19 @@ def build_prev_password():
 
 def generating_pseudo_random_pass(pass_length):
     """
-    Generates a pseudo random pass using the values in ALL constant.
-    :param pass_length: type = int. Length of the pass that will be build.
-    :return: type = list
+    Generates a pseudo random pass.
+
+    :param pass_length: Length of the pass that will be build.
+    :type pass_length: int
+    :return: (list) -- return a password, with pass_length - 3 (three elements put in the list by \
+    'build_prev_password()') elements, build with elements chosen pseudo-randomly from CHARACTERS_TYPES["all"]
+
     """
     prev_password = build_prev_password()
 
-    return [random.choice(CHARACTERS_TYPES.get("all")) for i in range(0, pass_length - 3)] + prev_password
+    # Shuffle ensures that elements obtains from build_prev_password() are not in the last three positions.
+    return random.shuffle([random.choice(CHARACTERS_TYPES.get("all")) for i in range(0, pass_length - 3)] +
+                          prev_password)
 
 
 if __name__ == "__main__":
@@ -37,6 +46,5 @@ if __name__ == "__main__":
         length_of_pass = int(sys.argv[1]) if int(sys.argv[1]) > 8 else sys.exit("Length must be greater than 8")
 
     password = generating_pseudo_random_pass(length_of_pass)
-    # Shuffle ensures that elements obtains from build_prev_password() are not in the last three positions.
-    random.shuffle(password)
+
     print("The password generated is: " + "".join(password))
